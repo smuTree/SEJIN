@@ -1,0 +1,11 @@
+Model Information:
+* title:	Hollow Knight #85 - Husk Miner
+* source:	https://sketchfab.com/3d-models/hollow-knight-85-husk-miner-b703e28ee4cb4518843b9d39cbc21370
+* author:	Brandon Ehrman (https://sketchfab.com/NyxNoire)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Hollow Knight #85 - Husk Miner" (https://sketchfab.com/3d-models/hollow-knight-85-husk-miner-b703e28ee4cb4518843b9d39cbc21370) by Brandon Ehrman (https://sketchfab.com/NyxNoire) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
