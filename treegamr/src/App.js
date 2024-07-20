@@ -12,6 +12,7 @@ import { Player } from './components/Player';
 import { FPV } from './components/FPV';
 import { Cubes } from './components/Cubes';
 
+// 모델 가져오기
 function Model() {
   const camera = new THREE.PerspectiveCamera(
     75,
