@@ -7,15 +7,24 @@ export const Ground = () => {
     rotation: [-Math.PI / 2, 0, 0], 
     position: [0, -0.5, 0],
   }));
-  const [addCube] = useStore((state) => [state.addCube]);
+
+  // Extract both addCube and addCrystal
+  const [addCube, addCrystal] = useStore((state) => [state.addCube, state.addCrystal]);
+
   groundTexture.repeat.set(100, 100);
 
   return (
     <mesh 
       onClick={(e) => {
         e.stopPropagation();
-        const [x, y, z] = Object.values(e.point).map((val) => Math.ceil(val)); // 반올림
-        addCube(x, y, z);
+        const [x, y, z] = Object.values(e.point).map((val) => Math.ceil(val)); // Round the values
+        
+        // Use Alt key to decide whether to add a crystal or cube
+        if (e.altKey) {
+          addCrystal(x, y, z);
+        } else {
+          addCube(x, y, z);
+        }
       }}
       ref={ref}
     >

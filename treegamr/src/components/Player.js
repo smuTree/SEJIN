@@ -3,16 +3,20 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { useSphere } from "@react-three/cannon";
 import { Vector3 } from "three";
 import { useKeyboard } from "../hooks/useKeyboard";
-const JUMP_FORCE = 4;
-const SPEED = 4;
+import { Vector2 } from "three";
+import { Raycaster } from "three";
+const JUMP_FORCE = 5;
+const SPEED = 7;
 
 export const Player = () => {
     const {moveBackward, moveForward, moveLeft, moveRight, jump} = useKeyboard();
-    const {camera} = useThree();
+    const {scene, camera} = useThree();
+    const mouse = useRef(new Vector2());
+    const raycaster = useRef(new Raycaster());
     const [ref, api] = useSphere(() => ({
         mass: 1,
         type: "Dynamic",
-        position: [0, 1, 0],
+        position: [0, 2, 0],
     }));
 
     const vel = useRef([0, 0, 0]);
@@ -25,10 +29,28 @@ export const Player = () => {
         api.position.subscribe((p) => (pos.current = p));
     }, [api.position]);
 
+    useEffect(() => {
+        const handleClick = (event) => {
+          mouse.current.x = (event.clientX / window.innerWidth) * 2 - 1;
+          mouse.current.y = -(event.clientY / window.innerHeight) * 2 + 1;
+          raycaster.current.setFromCamera(mouse.current, camera);
+          const intersects = raycaster.current.intersectObjects(scene.children, true);
+    
+          if (intersects.length > 0) {
+            const clickedObject = intersects[0].object;
+            console.log('Clicked object:', clickedObject.name || clickedObject);
+          }
+        };
+    
+        window.addEventListener('click', handleClick);
+        return () => window.removeEventListener('click', handleClick);
+      }, [scene, camera]);
+
     useFrame(()=>{
         camera.position.copy(
-            new Vector3(pos.current[0], pos.current[1], pos.current[2])
+            new Vector3(pos.current[0], pos.current[1] + 2, pos.current[2])
         );
+        
 
         const direction = new Vector3();
         const frontVector = new Vector3(
