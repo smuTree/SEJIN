@@ -8,6 +8,7 @@ import { Raycaster } from "three";
 const JUMP_FORCE = 5;
 const SPEED = 7;
 
+// merge study
 export const Player = () => {
     const {moveBackward, moveForward, moveLeft, moveRight, jump} = useKeyboard();
     const {scene, camera} = useThree();
