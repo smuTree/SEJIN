@@ -1,4 +1,5 @@
 import './App.css';
+import { useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Sky } from '@react-three/drei';
 import React from 'react';
@@ -11,28 +12,25 @@ import { Building } from './components/Building';
 import { Crystals } from './components/Crystals';
 
 function App() {
+  const [crystalNum] = useState("0");
+  const [coinNum] = useState("0");
   return (
     <>
       <Canvas shadows>
-        <Sky sunPosition={[100, 100, 20]} />
-        <ambientLight intensity={0.5} />
+        <Sky 
+          sunPosition={[0, -10, 0]} 
+          distance={10000} // 태양의 거리 조정
+          inclination={0.5} // 하늘의 경사
+          azimuth={0.25} // 하늘의 방위
+        />
+        <ambientLight intensity={0.2} />
         
         {/* Directional Light */}
         <directionalLight 
           position={[0, 100, 5]} 
-          intensity={2} 
+          intensity={2.5} 
           castShadow 
-          shadow-mapSize-width={1024}
-          shadow-mapSize-height={1024}
-          shadow-camera-far={50}
-          shadow-camera-left={-10}
-          shadow-camera-right={10}
-          shadow-camera-top={10}
-          shadow-camera-bottom={-10}
         />
-
-
-
         <FPV />
         <Physics>
           <Player />
@@ -43,6 +41,7 @@ function App() {
         </Physics>  
       </Canvas>
       <div className='centered cursor'>+</div>
+      <div></div>
     </>
   );
 }

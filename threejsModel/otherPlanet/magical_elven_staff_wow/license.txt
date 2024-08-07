@@ -1,0 +1,11 @@
+Model Information:
+* title:	Magical Elven Staff (WoW)
+* source:	https://sketchfab.com/3d-models/magical-elven-staff-wow-4b05be75a48a4c5b8ff6e3a4e773a3fa
+* author:	reinard.baertsoen (https://sketchfab.com/reinard.baertsoen)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Magical Elven Staff (WoW)" (https://sketchfab.com/3d-models/magical-elven-staff-wow-4b05be75a48a4c5b8ff6e3a4e773a3fa) by reinard.baertsoen (https://sketchfab.com/reinard.baertsoen) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

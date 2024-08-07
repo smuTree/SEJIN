@@ -1,6 +1,8 @@
 import { usePlane } from "@react-three/cannon";
 import { groundTexture } from "../images/textures";
 import { useStore } from "../hooks/useStore";
+import { random } from "nanoid";
+import { useEffect } from "react";
 
 export const Ground = () => {
   const [ref] = usePlane(() => ({
@@ -13,18 +15,24 @@ export const Ground = () => {
 
   groundTexture.repeat.set(100, 100);
 
+  const randomRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+  useEffect(() => {
+    for(let i = 0; i < 30; i++){
+      const x = randomRange(2, 8);
+      const z = randomRange(-4, 4);
+      const y = 1;
+  
+      addCube(x, y, z);
+    }
+  }, [addCube]);
+
   return (
     <mesh 
       onClick={(e) => {
         e.stopPropagation();
         const [x, y, z] = Object.values(e.point).map((val) => Math.ceil(val)); // Round the values
-        
-        // Use Alt key to decide whether to add a crystal or cube
-        if (e.altKey) {
-          addCrystal(x, y, z);
-        } else {
-          addCube(x, y, z);
-        }
+        //addCube(x, y, z);
       }}
       ref={ref}
     >
