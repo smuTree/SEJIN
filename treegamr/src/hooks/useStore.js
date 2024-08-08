@@ -3,7 +3,7 @@ import { create } from "zustand";
 import { Crystal } from "../components/Crystal";
 
 export const useStore = create((set) => ({
-    texture: "dirt",
+    texture: "purple",
     cubes: [
     ],
     addCube: (x, y, z) => {
@@ -28,16 +28,7 @@ export const useStore = create((set) => ({
                 },
             ],
         }));
-    },
-    // mineCrystal: (x, y, z) => {
-    //     set((prev) => ({
-    //       crystals: prev.crystals.filter((crystal) => {
-    //         const [X, Y, Z] = crystal.pos;
-    //         return X !== x || Y !== y || Z !== z;
-    //       }),
-    //     }));
-    //   },
-      
+    },   
     removeCube: (x, y, z) => {
     set((prev) => ({
         cubes: prev.cubes.filter((cube) => {

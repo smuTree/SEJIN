@@ -5,5 +5,5 @@ import { useEffect } from "react";
 export const FPV = () => {
     const {camera, gl} = useThree();
 
-    return <PointerLockControls args={[camera, gl.domElement]} />;
+    return <PointerLockControls  />; //args={[camera, gl.domElement]}
 };

@@ -20,20 +20,17 @@ export const Ground = () => {
   useEffect(() => {
     for(let i = 0; i < 30; i++){
       const x = randomRange(2, 8);
-      const z = randomRange(-4, 4);
-      const y = 1;
-  
+      const z = randomRange(-4, 3);
+      const y = 0.3;
+      
+      console.log(x +" "+z);
       addCube(x, y, z);
     }
   }, [addCube]);
 
   return (
     <mesh 
-      onClick={(e) => {
-        e.stopPropagation();
-        const [x, y, z] = Object.values(e.point).map((val) => Math.ceil(val)); // Round the values
-        //addCube(x, y, z);
-      }}
+
       ref={ref}
     >
       <planeGeometry attach="geometry" args={[100, 100]} />

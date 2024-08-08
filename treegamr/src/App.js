@@ -10,12 +10,14 @@ import { FPV } from './components/FPV';
 import { Cubes } from './components/Cubes';
 import { Building } from './components/Building';
 import { Crystals } from './components/Crystals';
+import { GameProvider, useGameContext } from './components/GameContext';
 
 function App() {
   const [crystalNum] = useState("0");
   const [coinNum] = useState("0");
   return (
     <>
+    <GameProvider>
       <Canvas shadows>
         <Sky 
           sunPosition={[0, -10, 0]} 
@@ -41,9 +43,22 @@ function App() {
         </Physics>  
       </Canvas>
       <div className='centered cursor'>+</div>
-      <div></div>
+      <GameText />
+    </GameProvider>  
     </>
   );
 }
+
+const GameText = () => {
+  const {cubesRemoved, crystalMelted, weaponMade}= useGameContext();
+
+  return (
+    <div className='overlay-text'>
+      {'Crystal Cube Mine: '+ cubesRemoved}<br />
+      {'Crystals Melted: ' + crystalMelted}<br />
+      {'Weapons Made: ' + weaponMade}
+    </div>
+  );
+};
 
 export default App;
