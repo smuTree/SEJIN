@@ -18,9 +18,8 @@ canvas {
   top: 10px; /* 화면 상단에서의 거리 */
   left: 10px; /* 화면 왼쪽에서의 거리 */
   font-size: 24px; /* 텍스트 크기 */
-  color: black; /* 텍스트 색상 */
-  background-color: rgba(255, 255, 255, 0.7); /* 배경 색상 (투명도 조절) */
+  font-style: oblique;
+  color: white; /* 텍스트 색상 */
   padding: 10px; /* 내부 여백 */
-  border-radius: 5px; /* 둥근 테두리 */
   z-index: 100; /* 다른 요소들 위에 표시되도록 설정 */
 }

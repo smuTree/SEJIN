@@ -84,35 +84,37 @@ export const Player = () => {
             const intersects = raycaster.current.intersectObjects(scene.children, true);
 
             // Raycaster 시각화
-            if (lineRef.current) {
-                const rayDirection = raycaster.current.ray.direction.clone().multiplyScalar(100); // 광선 길이
-                const endPoint = raycaster.current.ray.origin.clone().add(rayDirection);
-                lineRef.current.geometry.setFromPoints([raycaster.current.ray.origin, endPoint]);
-            }
+            // if (lineRef.current) {
+            //     const rayDirection = raycaster.current.ray.direction.clone().multiplyScalar(100); // 광선 길이
+            //     const endPoint = raycaster.current.ray.origin.clone().add(rayDirection);
+            //     lineRef.current.geometry.setFromPoints([raycaster.current.ray.origin, endPoint]);
+            // }
 
             // 물체 강조
             if (intersects.length > 0) {
                 const clickedObject = intersects[0].object;
 
                 // 테두리 강조 업데이트
-                if (edgeRef.current) {
-                    edgeRef.current.visible = false; // 기본적으로 숨김
-                    const geometry = new EdgesGeometry(clickedObject.geometry);
-                    const material = new LineBasicMaterial({ color: 0xff0000, linewidth: 2 });
-                    edgeRef.current.geometry.dispose(); // 이전 geometry 삭제
-                    edgeRef.current.geometry = geometry;
-                    edgeRef.current.material = material;
-                    edgeRef.current.visible = true;
-                }
+                // if (edgeRef.current) {
+                //     edgeRef.current.visible = false; // 기본적으로 숨김
+                //     const geometry = new EdgesGeometry(clickedObject.geometry);
+                //     const material = new LineBasicMaterial({ color: 0xff0000, linewidth: 2 });
+                //     edgeRef.current.geometry.dispose(); // 이전 geometry 삭제
+                //     edgeRef.current.geometry = geometry;
+                //     edgeRef.current.material = material;
+                //     edgeRef.current.visible = true;
+                // }
 
                 if (event.shiftKey && clickedObject.name === "crystalCube") {
                     console.log("Attempting to remove");
-        
+
                     const { x, y, z } = intersects[0].point;
-                    removeCube(Math.floor(x) + 1, 0.3, Math.floor(z));
-                    console.log(Math.floor(x) +" "+Math.floor(z));
+        
+                    //const roundX = Math.round(x);
+                    //const roundZ = Math.round(z);
+
+                    removeCube(x, 0.3, z); // 반올림된 좌표로 삭제
                     setCubesRemoved(cubesRemoved + 1);
- 
                 }
 
                 if (intersects.length > 0) {
@@ -129,8 +131,11 @@ export const Player = () => {
                     }
                 } 
                 if (clickedObject.name === "anvil") {
-                    setCrystalMelted(crystalMelted - 1);
-                    setWeaponMade(weaponMade + 1);
+                    if(crystalMelted > 0){
+                        setCrystalMelted(crystalMelted - 1);
+                        setWeaponMade(weaponMade + 1);
+                    }
+
                 } 
             }
         };
@@ -151,26 +156,10 @@ export const Player = () => {
             {/* Raycaster 시각화 Line */}
             <lineSegments ref={edgeRef} />
             {/* 물체의 테두리 강조 Line */}
-            <MyCube/>
+
             
         </>
     );
 };
 
-// Cube component
-const MyCube = () => {
-    const ref = useRef();
-    
-    useFrame(({ camera }) => {
-        if (ref.current) {
-            ref.current.position.set(camera.position.x, 1, camera.position.z + 3);
-        }
-    });
-    
-    return (
-        <mesh ref={ref} scale={[0.5, 1, 0.5]}>
-            <boxGeometry args={[1, 1, 1]} />
-            <meshStandardMaterial color="hotpink" />
-        </mesh>
-    );
-};
+

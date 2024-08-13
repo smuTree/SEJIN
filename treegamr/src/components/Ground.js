@@ -15,15 +15,14 @@ export const Ground = () => {
 
   groundTexture.repeat.set(100, 100);
 
-  const randomRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+  const randomRange = (min, max) => (Math.random() * (max - min + 1)) + min;
 
   useEffect(() => {
-    for(let i = 0; i < 30; i++){
+    for(let i = 0; i < 20; i++){
       const x = randomRange(2, 8);
       const z = randomRange(-4, 3);
       const y = 0.3;
       
-      console.log(x +" "+z);
       addCube(x, y, z);
     }
   }, [addCube]);

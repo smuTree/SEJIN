@@ -11,28 +11,19 @@ import { Cubes } from './components/Cubes';
 import { Building } from './components/Building';
 import { Crystals } from './components/Crystals';
 import { GameProvider, useGameContext } from './components/GameContext';
+import { NightSky } from './components/NightSky';
+import { PointLight } from 'three';
 
 function App() {
-  const [crystalNum] = useState("0");
-  const [coinNum] = useState("0");
   return (
-    <>
     <GameProvider>
       <Canvas shadows>
-        <Sky 
-          sunPosition={[0, -10, 0]} 
-          distance={10000} // 태양의 거리 조정
-          inclination={0.5} // 하늘의 경사
-          azimuth={0.25} // 하늘의 방위
-        />
-        <ambientLight intensity={0.2} />
-        
-        {/* Directional Light */}
-        <directionalLight 
-          position={[0, 100, 5]} 
-          intensity={2.5} 
-          castShadow 
-        />
+        <NightSky />
+        <pointLight 
+                position={[5, 2, 0.2]}
+                intensity={20}
+                distance={10}
+            />
         <FPV />
         <Physics>
           <Player />
@@ -40,23 +31,22 @@ function App() {
           <Ground />
           <Crystals />
           <Building />
-        </Physics>  
+        </Physics>
       </Canvas>
       <div className='centered cursor'>+</div>
       <GameText />
-    </GameProvider>  
-    </>
+    </GameProvider>
   );
 }
 
 const GameText = () => {
-  const {cubesRemoved, crystalMelted, weaponMade}= useGameContext();
+  const { cubesRemoved, crystalMelted, weaponMade } = useGameContext();
 
   return (
     <div className='overlay-text'>
-      {'Crystal Cube Mine: '+ cubesRemoved}<br />
-      {'Crystals Melted: ' + crystalMelted}<br />
-      {'Weapons Made: ' + weaponMade}
+      {'💎 Crystal Cube ---- ' + cubesRemoved}<br/>
+      {'🫧 Melted Crystal -- ' + crystalMelted}<br/>
+      {'🗡️ Weapon -------- ' + weaponMade}
     </div>
   );
 };

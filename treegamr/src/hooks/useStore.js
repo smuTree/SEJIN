@@ -29,12 +29,16 @@ export const useStore = create((set) => ({
             ],
         }));
     },   
+    
     removeCube: (x, y, z) => {
-    set((prev) => ({
-        cubes: prev.cubes.filter((cube) => {
-        const [X, Y, Z] = cube.pos;
-        return X !== x || Y !== y || Z !== z;
-        }),
-      }));
+        set((prev) => ({
+            cubes: prev.cubes.filter((cube) => {
+                const [X, Y, Z] = cube.pos;
+                // 오차 범위를 설정하여 비교
+                const tolerance = 0.1;
+                return Math.abs(X - x) > tolerance || Math.abs(Y - y) > tolerance || Math.abs(Z - z) > tolerance;
+            }),
+        }));
     },
+    
 }));
