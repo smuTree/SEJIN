@@ -6,10 +6,11 @@ import React from 'react';
 import { Ground } from './components/Ground';
 import { Physics } from '@react-three/cannon';
 import { Player } from './components/Player';
+import {TextComponent} from './components/TextComponent';
 import { FPV } from './components/FPV';
 import { Cubes } from './components/Cubes';
 import { Building } from './components/Building';
-import { Crystals } from './components/Crystals';
+import { Crystal } from './components/Crystal';
 import { GameProvider, useGameContext } from './components/GameContext';
 import { NightSky } from './components/NightSky';
 import { PointLight } from 'three';
@@ -25,11 +26,12 @@ function App() {
                 distance={10}
             />
         <FPV />
+        <TextComponent />
         <Physics>
           <Player />
           <Cubes />
           <Ground />
-          <Crystals />
+          <Crystal />
           <Building />
         </Physics>
       </Canvas>
